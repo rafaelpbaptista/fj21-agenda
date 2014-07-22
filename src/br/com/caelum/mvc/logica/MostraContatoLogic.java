@@ -1,5 +1,7 @@
 package br.com.caelum.mvc.logica;
 
+import java.sql.Connection;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -14,7 +16,12 @@ public class MostraContatoLogic implements Logica {
 
 		long id = Long.parseLong(request.getParameter("id"));
 
-		Contato contato = new ContatoDao().buscaPorId(id);
+		Connection connection = (Connection) request.getAttribute("conexao");
+		ContatoDao dao = new ContatoDao(connection);
+
+		// Contato contato = new ContatoDao().buscaPorId(id);
+		Contato contato = dao.buscaPorId(id);
+
 		request.setAttribute("contato", contato);
 
 		return "altera-contato.jsp";

@@ -1,5 +1,6 @@
 package br.com.caelum.mvc.logica;
 
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -13,8 +14,8 @@ import br.com.caelum.agenda.modelo.Contato;
 public class AlteraContatoLogic implements Logica {
 
 	@Override
-	public String executa(HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public String executa(HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 
 		// busca dados do request
 		Contato contato = new Contato();
@@ -31,8 +32,10 @@ public class AlteraContatoLogic implements Logica {
 		dataNascimento.setTime(date);
 		contato.setDataNascimento(dataNascimento);
 
-		ContatoDao dao = new ContatoDao();
-		
+		// ContatoDao dao = new ContatoDao();
+		Connection connection = (Connection) request.getAttribute("conexao");
+		ContatoDao dao = new ContatoDao(connection);
+
 		dao.atualiza(contato);
 		System.out.println("[INFO] Alterando contato " + contato.getNome());
 		return "mvc?logica=ListaContatosLogic";
