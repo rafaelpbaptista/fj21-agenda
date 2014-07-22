@@ -17,12 +17,14 @@
 	<c:import url="cabecalho.jsp" />
 	<h1>Adiciona Contatos</h1>
 	<hr />
-	<form action="adicionaContato" method="POST">
+	<!-- 	<form action="adicionaContato" method="POST"> -->
+	<form action="mvc" method="POST">
 		Nome: <input type="text" name="nome" /><br /> 
 		E-mail: <input type="text" name="email" /><br />
 		Endereço: <input type="text" name="endereco" /><br />
 		<%-- Data Nascimento: <input type="text" name="dataNascimento" /> --%>
 		Data Nascimento: <caelum:campoData id="dataNascimento" /><br /> 
+		<input type="hidden" name="logica" value="AdicionaContatoLogic" />
 		<input type="submit" value="Gravar" />
 	</form>
 	<c:import url="rodape.jsp" />
