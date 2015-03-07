@@ -1,6 +1,6 @@
 <%@ attribute name="id" required="true"%>
 
-<input id="${id}" name="${id}" />
+<input type="text" id="${id}" name="${id}" />
 <script>
 	$("#${id}").datepicker({
 		showButtonPanel : true,
